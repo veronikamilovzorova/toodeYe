@@ -1,0 +1,29 @@
+CREATE TABLE [dbo].[klient] (
+    [id]       INT          IDENTITY (1, 1) NOT NULL,
+    [nimi]     VARCHAR (30) NULL,
+    [perenimi] VARCHAR (30) NULL,
+    [login]    TEXT         NULL,
+    [salasona] VARCHAR (30) NULL,
+    [email]    TEXT         NULL,
+    [telefon]  CHAR (8)     NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+CREATE TABLE [dbo].[Toodetable] (
+    [Id]                 INT          IDENTITY (1, 1) NOT NULL,
+    [Kategooria_nimetus] VARCHAR (50) NOT NULL,
+    [Kirjeldus]          TEXT         NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Tootetable] (
+    [Id]           INT          IDENTITY (1, 1) NOT NULL,
+    [Toodenimetus] VARCHAR (50) NOT NULL,
+    [Kogus]        INT          NOT NULL,
+    [Hind]         REAL         NOT NULL,
+    [Pilt]         TEXT         NOT NULL,
+    [Kategooriad]  INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Tootetable_ToTable] FOREIGN KEY ([Kategooriad]) REFERENCES [dbo].[Toodetable] ([Id])
+);
+
